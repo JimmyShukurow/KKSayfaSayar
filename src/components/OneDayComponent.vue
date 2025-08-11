@@ -4,7 +4,7 @@
       {{ date }}
     </div>
     <div>
-      {{ weekday }}
+      {{ turkishWeekday }}
     </div>
     <div>
       <label for="page"> Sayfa </label>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import StatusComponent from '@/components/StatusComponent.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 
 const done = ref(false)
 
@@ -43,7 +43,24 @@ const date = ref(
     year: 'numeric',
   }),
 )
+
 const weekday = ref(props.incomingDate.toLocaleDateString('en-GB', { weekday: 'long' }))
+
+// A map to convert English weekdays to Turkish weekdays
+const turkishWeekdayMap = new Map([
+  ['Monday', 'Pazartesi'],
+  ['Tuesday', 'Salı'],
+  ['Wednesday', 'Çarşamba'],
+  ['Thursday', 'Perşembe'],
+  ['Friday', 'Cuma'],
+  ['Saturday', 'Cumartesi'],
+  ['Sunday', 'Pazar'],
+])
+
+// A computed property to get the Turkish weekday
+const turkishWeekday = computed(() => {
+  return turkishWeekdayMap.get(weekday.value)
+})
 
 const checkDone = () => {
   const today = new Date()
@@ -54,7 +71,12 @@ const checkDone = () => {
   if (incoming <= today) {
     done.value = !done.value // toggle done status
   } else {
-    alert('Bu günün sayfasını henüz tamamlamadınız.')
+    alert('Bu gün daha gelmedi.')
+    return
+  }
+
+  if (!done.value) {
+    alert('eminmisin?')
   }
 }
 
