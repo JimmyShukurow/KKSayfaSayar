@@ -17,9 +17,20 @@
 
 <script setup lang="ts">
 import StatusComponent from '@/components/StatusComponent.vue'
+import { useDaysStore } from '@/stores/data'
 import { onMounted, ref, computed } from 'vue'
 
-const done = ref(false)
+// store instance
+const store = useDaysStore()
+
+const done = computed({
+  get() {
+    return store.getDayStatus(props.incomingDate)
+  },
+  set(value: boolean) {
+    store.setDayStatus(props.incomingDate, value)
+  },
+})
 
 const status = ref('present') // 'past', 'present', or 'future'
 

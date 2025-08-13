@@ -33,7 +33,7 @@ const welcome = ref('Ikra Jimmy, Ikra ... Bol-bol oku')
 const disabled = ref(true)
 const not_now = ref(false)
 
-const startDateText = ref('11-06-2025')
+const startDateText = ref('11-08-2025')
 const pagesPerDay = ref(5)
 const startDate = new Date('2025-08-11')
 const startPage = 101

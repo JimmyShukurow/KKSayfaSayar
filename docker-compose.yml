@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  frontend-server:
+    container_name: agents-admin-panel
+    build:
+      context: .
+    ports:
+      - 4200:80
