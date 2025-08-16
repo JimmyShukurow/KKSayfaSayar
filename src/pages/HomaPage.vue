@@ -40,7 +40,7 @@ const not_now = ref(false)
 const startDateText = ref('11-08-2025')
 const pagesPerDay = ref(5)
 const startDate = new Date('2025-08-11')
-const startPage = 101
+const startPage = ref(101)
 const endPage = 600
 const increment = 5
 const totalDays = 120
@@ -51,7 +51,7 @@ const days = Array.from({ length: totalDays }, (_, i) => {
   d.setDate(startDate.getDate() + i)
 
   // pages
-  const firstPage = ((startPage - 1 + i * increment) % endPage) + 1
+  const firstPage = ((startPage.value - 1 + i * increment) % endPage) + 1
   const lastPage = firstPage + increment - 1
   const pageStr = `${firstPage}-${lastPage}`
 
