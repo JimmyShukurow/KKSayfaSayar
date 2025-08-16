@@ -9,6 +9,10 @@
       <label for="pages-per-day">Günlük Sayfa Sayısı</label>
       <input type="number" id="pages-per-day" v-model="pagesPerDay" :disabled="disabled" />
     </div>
+    <div>
+      <label for="pages-per-day">Başlangıç sayfa</label>
+      <input type="number" id="pages-per-day" v-model="startPage" :disabled="disabled" />
+    </div>
     <div v-if="not_now">
       <input type="checkbox" id="disabled" v-model="disabled" />
     </div>
